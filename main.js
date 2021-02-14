@@ -19,7 +19,6 @@ const app = () => {
     outline.style.strokeDashoffset = outlineLenth;
 
     // Pick different sounds
-
     sounds.forEach(sound => {
         sound.addEventListener('click', function(){
             song.src = this.getAttribute('data-sound');
@@ -79,8 +78,11 @@ const app = () => {
             play.src = './src/svg/play.svg';
         }
     };
+    // Compute current Year 
+    const year = new Date().getFullYear();
+    const thisYear = document.querySelector('.this-year');
+    thisYear.innerHTML = year;
 
-    
 };
 
 
