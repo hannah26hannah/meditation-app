@@ -4,10 +4,8 @@ const app = () => {
     const outline = document.querySelector('.moving-outline circle');
     const video = document.querySelector('.vid-container video');
     
-
     //sounds
     const sounds = document.querySelectorAll('.sound-picker button');
-    // be careful. because we're grabbing all sounds
     //Time display
     const timeDislay = document.querySelector('.time-display');
     const timeSelect = document.querySelectorAll('.time-select button');
@@ -51,7 +49,6 @@ const app = () => {
         if (song.paused) {
             song.play();
             video.play();
-            // paused status인데 왜 play를 할까? -> 사용자가 다음 번에 실행하고 싶은 action이니까.  
             play.src = './src/svg/pause.svg'; 
             
         } else {
