@@ -1,9 +1,10 @@
 const app = () => {
+
     const song = document.querySelector('.song');
     const play = document.querySelector('.play');
     const outline = document.querySelector('.moving-outline circle');
     const video = document.querySelector('.vid-container video');
-    
+
     //sounds
     const sounds = document.querySelectorAll('.sound-picker button');
     //Time display
@@ -20,12 +21,13 @@ const app = () => {
 
     // Pick different sounds
     sounds.forEach(sound => {
-        sound.addEventListener('click', function(){
+        sound.addEventListener('click', function () {
             song.src = this.getAttribute('data-sound');
             video.src = this.getAttribute('data-video');
             checkPlyaing(song);
         })
     })
+    
 
     // play sound
     play.addEventListener('click', () => {
@@ -35,13 +37,11 @@ const app = () => {
     // Select sound 
     timeSelect.forEach(option => {
         option.addEventListener('click', function(){ 
-                            // using normal function because we use 'option keyword'
             fakeDuration = this.getAttribute('data-time');
             const sec = Math.floor(fakeDuration % 60);
             timeDislay.textContent = `${Math.floor(fakeDuration / 60)} : ${sec < 10 ? `0${sec}` : sec}`
         })
     })
-
 
     // Create a function specific to stop and play the sounds
     const checkPlyaing = song => {
