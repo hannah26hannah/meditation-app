@@ -2,6 +2,9 @@
 3 different kinds of meditation helper,
 Built with vanilla JavaScript
 
+# Goal
+Practice vanilla JavaScript, webpack system
+
 [DEMO](https://hannah26hannah.github.io/meditation-app)
 
 # preview

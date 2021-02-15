@@ -1,5 +1,5 @@
 // CSS
-require('../style.css');
+import '../style/style.css';
 
 // JavaScript
-require('./main.js');
+import './main.js'

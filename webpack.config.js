@@ -1,60 +1,67 @@
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const path = require("path");
+
 module.exports = {
   entry: './src/js/app.js',
-  mode: 'development',
+  mode: 'none',
   output: {
-	path: `${__dirname}/dist`,
+	path: path.resolve(`${__dirname}/dist`),
 	filename: 'bundle.js',
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: 'index.html',
-        filename: 'index.html',
-        minify: {
-            collapseWhitespace: true
-        }
-    })],
-    module: {
+  module: {
         rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                ]
-            },
-            {
-                test: /\.(gif|png|jpe?g|svg|xml)?$/i,
-                loader: 'file-loader',
-                options: {
-                    name: '[path][name].[ext]'
-                }
-            },
-            {
-                test: /\.(ogg|mp3|mpe?g)$/i,
-                loader: 'file-loader',
-                options: {
-                    name: '[path][name].[ext]'
-                }
-            },
-            {
-                test: /\.(ogg|mp4|wav|mpe?g)$/i,
-                loader: 'file-loader',
-                options: {
-                    name: '[path][name].[ext]'
-                }
-            },
-            {
-                test: /\.html$/,
-                loader: 'html-loader',
-                options: {
-                    attrs: [":src"]
-                }
-            },
-            {
-                test: /\.(mov|mp4)$/,
-                loader: 'url-loader'
-            },
+          {
+            test: /\.css$/,
+            exclude: "/node_modules",
+            use: [
+                { loader: MiniCssExtractPlugin.loader },
+                'css-loader'
+            ]
+          },
+          {
+              test: /\.(jpe?g|png|gif|svg)$/i,
+              loader: 'file-loader',
+              options: {
+                  name: '/svg/[name].[ext]'
+              }
+          },
+          {
+              test: /\.(mp3)$/i,
+              loader: 'file-loader',
+              options: {
+                  name: '/sounds/[name].[ext]'
+              }
+          },
+          {
+              test: /\.(mp4)$/i,
+              loader: 'file-loader',
+              options: {
+                  name: '/video/[name].[ext]'
+              }
+          },
       ]
   },
+  devServer: {
+    contentBase: path.join(__dirname, "./dist/"),
+    port: 9000
+  },
+  plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'style.css'
+        }),
+        new HtmlWebpackPlugin({
+            template: './index.html',
+            filename: 'index.html',
+            minify: {
+                collapseWhitespace: true
+            },
+            hash: true
+        })
+   ],
+   resolve: {
+        modules: ['node_modules'],
+        extensions: ['.js', '.json', '.jsx', '.css']
+   } 
 };

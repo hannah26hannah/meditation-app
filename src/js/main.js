@@ -1,12 +1,32 @@
-const app = () => {
+import playSvg from '../svg/play.svg';
+import pauseSvg from '../svg/pause.svg';
 
+import rainSound from '../sounds/rain.mp3'
+import beachSound from '../sounds/beach.mp3'
+import forestSound from '../sounds/forest.mp3'
+
+import rainVideo from '../video/rain.mp4'
+import beachVideo from '../video/beach.mp4'
+import forestVideo from '../video/forest.mp4'
+
+
+const app = () => {
+    
     const song = document.querySelector('.song');
     const play = document.querySelector('.play');
     const outline = document.querySelector('.moving-outline circle');
     const video = document.querySelector('.vid-container video');
+    
+    // set first video
+    video.src = rainVideo;
+    song.src = rainSound;
+    // set svg (play button)
+    play.src = playSvg;
+    
 
     //sounds
     const sounds = document.querySelectorAll('.sound-picker button');
+
     //Time display
     const timeDislay = document.querySelector('.time-display');
     const timeSelect = document.querySelectorAll('.time-select button');
@@ -22,12 +42,21 @@ const app = () => {
     // Pick different sounds
     sounds.forEach(sound => {
         sound.addEventListener('click', function () {
-            song.src = this.getAttribute('data-sound');
-            video.src = this.getAttribute('data-video');
+            if (sound.className === 'rain') {
+                song.src = rainSound;
+                video.src = rainVideo;
+            } else if (sound.className === 'beach') {
+                song.src = beachSound;
+                video.src = beachVideo;
+            } else { 
+                song.src = forestSound;
+                video.src = forestVideo;
+            }
+            // song.src = this.getAttribute('data-sound');
+            // video.src = this.getAttribute('data-video');
             checkPlyaing(song);
         })
     })
-    
 
     // play sound
     play.addEventListener('click', () => {
@@ -48,12 +77,12 @@ const app = () => {
         if (song.paused) {
             song.play();
             video.play();
-            play.src = './src/svg/pause.svg'; 
+            play.src = pauseSvg; 
             
         } else {
             song.pause();
             video.pause();
-            play.src = './src/svg/play.svg'; 
+            play.src = playSvg; 
         }
     }
 
@@ -75,7 +104,7 @@ const app = () => {
             song.pause();
             video.pause();
             song.currentTime = 0; // reset 
-            play.src = './src/svg/play.svg';
+            play.src = playSvg;
         }
     };
     // Compute current Year 
