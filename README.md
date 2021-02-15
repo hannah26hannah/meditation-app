@@ -3,9 +3,10 @@
 Built with vanilla JavaScript
 
 # Goal
-Practice vanilla JavaScript, webpack system
+Practice vanilla JavaScript & webpack system
+deployed via Netlify
 
-[DEMO](https://hannah26hannah.github.io/meditation-app)
+[DEMO](https://hannah-meditation-app.netlify.app/)
 
 # preview
 <img src="src/images/meditation_1.png">
